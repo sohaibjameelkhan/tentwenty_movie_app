@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:tentwenty_movie_app/Utils/app_colors.dart';
+
+
+import 'app_colors.dart';
+
 
 ThemeData currentTheme(context) => Theme.of(context);
 
@@ -58,13 +60,13 @@ class AppTheme {
           fontWeight: FontWeight.w500,
           fontFamily: 'Poppins',
           fontStyle: FontStyle.normal,
-          fontSize: 12.sp,
+          fontSize: 12,
           overflow: TextOverflow.ellipsis),
       titleMedium: TextStyle(
           color: AppColors.whiteColor,
           fontWeight: FontWeight.w500,
           fontFamily: 'Poppins',
-          fontSize: 14.sp,
+          fontSize: 14,
           fontStyle: FontStyle.normal,
           overflow: TextOverflow.ellipsis),
       titleSmall: TextStyle(
@@ -72,7 +74,7 @@ class AppTheme {
           fontWeight: FontWeight.w300,
           fontFamily: 'Poppins',
           fontStyle: FontStyle.normal,
-          fontSize: 12.sp,
+          fontSize: 12,
           overflow: TextOverflow.ellipsis),
     ),
     // bottomAppBarTheme: const BottomAppBarTheme(
@@ -92,7 +94,7 @@ var buttonTextStyle = TextStyle(
     fontWeight: FontWeight.w500,
     fontFamily: 'Poppins',
     fontStyle: FontStyle.normal,
-    fontSize: 12.sp,
+    fontSize: 12,
     overflow: TextOverflow.ellipsis);
 
 var stylebold70010 = TextStyle(
@@ -100,7 +102,7 @@ var stylebold70010 = TextStyle(
     fontWeight: FontWeight.w700,
     fontFamily: 'Poppins',
     fontStyle: FontStyle.normal,
-    fontSize: 10.sp,
+    fontSize: 10,
     height: 1,
     overflow: TextOverflow.ellipsis);
 
@@ -109,7 +111,7 @@ var styleRegular50012 = TextStyle(
     fontWeight: FontWeight.w500,
     fontFamily: 'Poppins',
     fontStyle: FontStyle.normal,
-    fontSize: 12.sp,
+    fontSize: 12,
     overflow: TextOverflow.ellipsis);
 
 var styleMedium50012 = TextStyle(
@@ -117,5 +119,5 @@ var styleMedium50012 = TextStyle(
     fontWeight: FontWeight.w500,
     fontFamily: 'Poppins',
     fontStyle: FontStyle.normal,
-    fontSize: 12.sp,
+    fontSize: 12,
     overflow: TextOverflow.ellipsis);

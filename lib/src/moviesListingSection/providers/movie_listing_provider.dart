@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/models/movie_details_model.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/models/movies_listing_model.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/services/movies_listing_service.dart';
 
 import '../../../Utils/log_utils.dart';
+import '../models/movie_details_model.dart';
+import '../models/movie_images_model.dart';
+import '../models/movie_trailers_model.dart';
+import '../models/movies_listing_model.dart';
+import '../services/movies_listing_service.dart';
 
 class MovieListingProvider extends ChangeNotifier {
   MoviesListingService moviesListingService = MoviesListingService();
@@ -50,5 +52,35 @@ class MovieListingProvider extends ChangeNotifier {
     dp(
         msg: "movies listing details model print",
         arg: moviesListingModel!.toJson());
+  }
+
+  MovieTrailersModel? movieTrailersModel;
+
+  getMovieTrailersProvider(String movieID) async {
+    await Future.delayed(const Duration(microseconds: 1));
+    makeLoadingTrue();
+    movieTrailersModel =
+        await moviesListingService.getMovieTrailers(movieID).whenComplete(() {
+      makeLoadingFalse();
+    });
+
+    notifyListeners();
+
+    dp(msg: "movies trailers  model print", arg: movieTrailersModel!.toJson());
+  }
+
+  MovieImagesModel? movieImagesModel;
+
+  getMovieImagesProvider(String movieID) async {
+    await Future.delayed(const Duration(microseconds: 1));
+    makeLoadingTrue();
+    movieImagesModel =
+        await moviesListingService.getMovieImages(movieID).whenComplete(() {
+      makeLoadingFalse();
+    });
+
+    notifyListeners();
+
+    dp(msg: "movies images  model print", arg: movieImagesModel!.toJson());
   }
 }

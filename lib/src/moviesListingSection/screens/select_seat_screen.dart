@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:tentwenty_movie_app/src/commonWidgets/button_widget.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/providers/seat_provider.dart';
 
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_theme.dart';
 import '../../../Utils/image_constants.dart';
+import '../../commonWidgets/button_widget.dart';
 import '../models/seats_model.dart';
+import '../providers/seat_provider.dart';
 
 class SelectSeatScreen extends StatefulWidget {
   static String route = "/SelectSeatScreen";
@@ -53,7 +53,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 26),
               child: Row(
                 children: [
                   Expanded(
@@ -74,7 +74,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            seatProvider.getTotalPrice().toString() + " \$",
+                            "${seatProvider.getTotalPrice()} \$",
                             // "50\$",
                             style: titleMedium(context)!.copyWith(
                                 color: AppColors.blackColor,
@@ -111,7 +111,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -145,7 +145,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
                           Row(
                             children: [
                               Text(
-                                "${widget.selectedDate}",
+                                widget.selectedDate,
                                 style: titleMedium(context)!.copyWith(
                                     color: AppColors.lightBlueColor,
                                     fontSize: 13,
@@ -186,7 +186,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 400,
+              height: 360,
               decoration: const BoxDecoration(color: AppColors.backgroundColor),
               child: Column(
                 children: [
@@ -215,8 +215,8 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
                         },
                         child: Transform.scale(
                           scale: _scale,
-                          child: Container(
-                            height: 250,
+                          child: SizedBox(
+                            height: 220,
                             child: Row(
                               children: [
                                 Expanded(
@@ -229,7 +229,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
                                       return Center(
                                         child: Padding(
                                           padding: const EdgeInsets.only(
-                                              bottom: 3.5),
+                                              bottom: 3.2),
                                           child: Text(
                                             '${index + 1}',
                                             style: const TextStyle(
@@ -249,7 +249,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
                                     gridDelegate:
                                         const SliverGridDelegateWithFixedCrossAxisCount(
                                             crossAxisCount: 24,
-                                            childAspectRatio: 0.7,
+                                            childAspectRatio: 0.6,
                                             crossAxisSpacing: 0.5),
                                     itemBuilder:
                                         (BuildContext context, int index) {
@@ -355,7 +355,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
               height: 30,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Row(
                 children: [
                   Row(
@@ -408,7 +408,7 @@ class _SelectSeatScreenState extends State<SelectSeatScreen> {
               height: 15,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Row(
                 children: [
                   Row(

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tentwenty_movie_app/Utils/api_constants.dart';
-import 'package:tentwenty_movie_app/Utils/text_constants.dart';
-import 'package:tentwenty_movie_app/src/commonWidgets/cacheNetworkImageWidget.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/screens/movie_details_screen.dart';
 
+import '../../../Utils/api_constants.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_theme.dart';
+import '../../../Utils/text_constants.dart';
+import '../../commonWidgets/cacheNetworkImageWidget.dart';
 import '../models/movies_listing_model.dart';
+import '../screens/movie_details_screen.dart';
 
 class MoviesListingCardWidget extends StatelessWidget {
   final Result result;
@@ -18,7 +18,7 @@ class MoviesListingCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 10, left: 5, right: 5),
+      padding: EdgeInsets.only(bottom: 10, left: 0, right: 0),
       child: Stack(
         children: [
           InkWell(

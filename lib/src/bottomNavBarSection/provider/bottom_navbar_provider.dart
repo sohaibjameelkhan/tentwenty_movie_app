@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tentwenty_movie_app/src/mediaLibrarySection/screens/media_library_screen.dart';
-import 'package:tentwenty_movie_app/src/moreSection/screens/more_screen.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/screens/movies_listing_screen.dart';
 
 import '../../dashboardSection/screens/dashboard_screen.dart';
+import '../../mediaLibrarySection/screens/media_library_screen.dart';
+import '../../moreSection/screens/more_screen.dart';
+import '../../moviesListingSection/screens/movies_listing_screen.dart';
 
 class BottomNavProvider extends ChangeNotifier {
   Widget currentScreen = const DashBoardScreen();

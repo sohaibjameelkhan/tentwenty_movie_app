@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:tentwenty_movie_app/Utils/image_constants.dart';
 
 import '../../../Utils/app_colors.dart';
+import '../../../Utils/image_constants.dart';
 import '../provider/bottom_navbar_provider.dart';
 
 class BottomNavScreen extends StatefulWidget {
@@ -48,7 +48,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: ClipRRect(
                       borderRadius: const BorderRadius.vertical(
                           top: Radius.circular(20), bottom: Radius.circular(0)),

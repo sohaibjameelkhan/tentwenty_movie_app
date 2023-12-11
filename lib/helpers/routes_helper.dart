@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/screens/movie_details_screen.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/screens/select_date_screen.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/screens/select_seat_screen.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/screens/trailer_screen.dart';
 
 import '../Utils/text_constants.dart';
 import '../src/bottomNavBarSection/screens/bottomNavScreen.dart';
 import '../src/dashboardSection/screens/dashboard_screen.dart';
 import '../src/mediaLibrarySection/screens/media_library_screen.dart';
 import '../src/moreSection/screens/more_screen.dart';
+import '../src/moviesListingSection/screens/movie_details_screen.dart';
 import '../src/moviesListingSection/screens/movies_listing_screen.dart';
+import '../src/moviesListingSection/screens/search_screen.dart';
+import '../src/moviesListingSection/screens/select_date_screen.dart';
+import '../src/moviesListingSection/screens/select_seat_screen.dart';
+import '../src/moviesListingSection/screens/trailer_screen.dart';
 
 GlobalKey<NavigatorState> navstate = GlobalKey<NavigatorState>();
 
@@ -66,11 +67,26 @@ var routerConfigs = GoRouter(
     ),
 
     GoRoute(
-      path: TrailerScreen.route,
+      path: MovieTrailerScreen.route,
       pageBuilder: (context, state) {
-        return const NoTransitionPage(child: TrailerScreen());
+        var extra = state.extra as Map<String, dynamic>?;
+        return NoTransitionPage(
+            child: MovieTrailerScreen(
+          trainlerkey: extra?[TextConstants.trailerKey],
+        ));
       },
     ),
+
+    // GoRoute(
+    //   path: MyHomePage.route,
+    //   pageBuilder: (context, state) {
+    //     var extra = state.extra as Map<String, dynamic>?;
+    //     return NoTransitionPage(
+    //         child: MyHomePage(
+    //       trainlerkey: extra?[TextConstants.trailerKey],
+    //     ));
+    //   },
+    // ),
 
     GoRoute(
       path: MovieDetailsScreen.route,
@@ -113,6 +129,13 @@ var routerConfigs = GoRouter(
       path: MoreScreen.route,
       pageBuilder: (BuildContext context, GoRouterState state) {
         return const NoTransitionPage(child: MoreScreen());
+      },
+    ),
+
+    GoRoute(
+      path: SearchScreen.route,
+      pageBuilder: (BuildContext context, GoRouterState state) {
+        return const NoTransitionPage(child: SearchScreen());
       },
     ),
     GoRoute(

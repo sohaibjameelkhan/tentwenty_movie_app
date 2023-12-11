@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:tentwenty_movie_app/Utils/log_utils.dart';
 
+
+import '../../../Utils/log_utils.dart';
 import '../models/seats_model.dart';
 import '../models/selected_seat_model.dart';
 

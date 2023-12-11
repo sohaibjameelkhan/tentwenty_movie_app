@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:provider/provider.dart';
-import 'package:tentwenty_movie_app/Utils/app_colors.dart';
-import 'package:tentwenty_movie_app/Utils/app_theme.dart';
+import 'package:go_router/go_router.dart';
 
+import 'package:provider/provider.dart';
+import 'package:tentwenty_movie_app/src/moviesListingSection/screens/search_screen.dart';
+
+import '../../../Utils/app_colors.dart';
+import '../../../Utils/app_theme.dart';
 import '../../../Utils/image_constants.dart';
 import '../providers/movie_listing_provider.dart';
 import '../widgets/movies_listing_card_widget.dart';
@@ -36,7 +39,7 @@ class _MoviesListingScreenState extends State<MoviesListingScreen> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -47,8 +50,11 @@ class _MoviesListingScreenState extends State<MoviesListingScreen> {
                             fontSize: 18,
                             fontWeight: FontWeight.w500),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20),
+                      InkWell(
+                        onTap: () {
+                          GoRouter.of(context)
+                              .push(SearchScreen.route, extra: {});
+                        },
                         child: SvgPicture.asset(
                           ImageConstants.search,
                           height: 25,
@@ -79,7 +85,7 @@ class _MoviesListingScreenState extends State<MoviesListingScreen> {
                   Expanded(
                     child: ListView.builder(
                         padding:
-                            const EdgeInsets.only(top: 0, left: 12, right: 12),
+                            const EdgeInsets.only(top: 0, left: 8, right: 8),
                         itemCount: moviesListingProvider
                             .moviesListingModel!.results!.length,
                         shrinkWrap: false,

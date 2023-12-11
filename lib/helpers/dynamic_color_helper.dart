@@ -1,4 +1,6 @@
-import 'package:tentwenty_movie_app/Utils/app_colors.dart';
+
+
+import '../Utils/app_colors.dart';
 
 getDynamicColor(int index) {
   if (index == 0) {

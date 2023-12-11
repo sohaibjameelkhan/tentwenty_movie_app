@@ -2,17 +2,17 @@ import 'package:date_time_format/date_time_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
-import 'package:tentwenty_movie_app/src/commonWidgets/button_widget.dart';
-import 'package:tentwenty_movie_app/src/commonWidgets/snak_bar_widget.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/screens/select_seat_screen.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/widgets/date_card_widget.dart';
 
+import 'package:provider/provider.dart';
+import 'package:tentwenty_movie_app/src/moviesListingSection/screens/select_seat_screen.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_theme.dart';
 import '../../../Utils/image_constants.dart';
 import '../../../Utils/text_constants.dart';
+import '../../commonWidgets/button_widget.dart';
+import '../../commonWidgets/snak_bar_widget.dart';
 import '../providers/book_seat_provider.dart';
+import '../widgets/date_card_widget.dart';
 import '../widgets/theatreHallCardWidget.dart';
 
 class SelectDateScreen extends StatefulWidget {
@@ -74,7 +74,7 @@ class _SelectDateScreenState extends State<SelectDateScreen> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -132,7 +132,7 @@ class _SelectDateScreenState extends State<SelectDateScreen> {
               height: 100,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Text(
                 "Date",
                 style: titleMedium(context)!.copyWith(
@@ -145,7 +145,7 @@ class _SelectDateScreenState extends State<SelectDateScreen> {
             Consumer<BookSeatProvider>(
                 builder: (context, bookSeatProvider, __) {
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 5),
                 child: SizedBox(
                   height: 60,
                   child: ListView.builder(
@@ -176,7 +176,7 @@ class _SelectDateScreenState extends State<SelectDateScreen> {
             Consumer<BookSeatProvider>(
                 builder: (context, bookSeatProvider, __) {
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: SizedBox(
                   height: 250,
                   child: ListView.builder(

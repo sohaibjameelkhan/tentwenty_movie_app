@@ -3,19 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+
 import 'package:provider/provider.dart';
-import 'package:tentwenty_movie_app/Utils/api_constants.dart';
-import 'package:tentwenty_movie_app/Utils/image_constants.dart';
-import 'package:tentwenty_movie_app/src/commonWidgets/cacheNetworkImageWidget.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/providers/movie_listing_provider.dart';
 import 'package:tentwenty_movie_app/src/moviesListingSection/screens/select_date_screen.dart';
 import 'package:tentwenty_movie_app/src/moviesListingSection/screens/trailer_screen.dart';
 
+import '../../../Utils/api_constants.dart';
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_theme.dart';
+import '../../../Utils/image_constants.dart';
 import '../../../Utils/text_constants.dart';
 import '../../../helpers/dynamic_color_helper.dart';
+
 import '../../commonWidgets/button_widget.dart';
+import '../../commonWidgets/cacheNetworkImageWidget.dart';
+import '../providers/movie_listing_provider.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
   static String route = "/MovieDetailsScreen";
@@ -33,6 +35,10 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
     context
         .read<MovieListingProvider>()
         .getMovieDetailsProvider(widget.movieID);
+    context
+        .read<MovieListingProvider>()
+        .getMovieTrailersProvider(widget.movieID);
+    context.read<MovieListingProvider>().getMovieImagesProvider(widget.movieID);
     super.initState();
   }
 
@@ -46,7 +52,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
           return true;
         },
         child: Scaffold(
-          body: movieListingProvider.movieDetailsModel == null
+          body: movieListingProvider.movieDetailsModel == null ||
+                  movieListingProvider.movieTrailersModel == null
               ? const Center(
                   child: SpinKitSpinningLines(
                   color: AppColors.purpleColor,
@@ -68,7 +75,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                               radius: 0),
                           Positioned(
                               child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 17),
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
                             child: Column(
                               children: [
                                 const SizedBox(
@@ -153,9 +160,16 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                 CommonButtonWidget(
                                   text: 'Watch Trailer',
                                   onTap: () {
-                                    GoRouter.of(context).push(
-                                      TrailerScreen.route,
-                                    );
+                                    GoRouter.of(context)
+                                        .push(MovieTrailerScreen.route, extra: {
+                                      TextConstants.trailerKey:
+                                          movieListingProvider
+                                              .movieTrailersModel!
+                                              .results!
+                                              .first
+                                              .key
+                                              .toString()
+                                    });
                                   },
                                   radius: 11,
                                   showIcon: true,
@@ -171,7 +185,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         height: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -189,8 +203,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         height: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Container(
+                        padding: const EdgeInsets.only(left: 3),
+                        child: SizedBox(
                           height: 37,
                           child: ListView.builder(
                               padding: const EdgeInsets.only(
@@ -218,7 +232,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                         data.toString(),
                                         style: titleMedium(context)!.copyWith(
                                             color: AppColors.whiteColor,
-                                            fontSize: 16,
+                                            fontSize: 15,
                                             fontWeight: FontWeight.w500),
                                       )),
                                     ),
@@ -231,7 +245,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         height: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -249,7 +263,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         height: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: RichText(
                           textAlign: TextAlign.start,
                           text: TextSpan(
@@ -266,8 +280,56 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 40,
-                      )
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Images",
+                              style: titleMedium(context)!.copyWith(
+                                  color: AppColors.blackColor,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      movieListingProvider.movieImagesModel == null
+                          ? const SpinKitSpinningLines(
+                              size: 40, color: AppColors.backgroundColor)
+                          : Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 12),
+                              child: GridView.builder(
+                                padding: EdgeInsets.only(top: 0),
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount:
+                                      2, // Number of items in each row
+                                  crossAxisSpacing:
+                                      12.0, // Spacing between columns
+                                  mainAxisSpacing: 8.0, // Spacing between rows
+                                ),
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: movieListingProvider
+                                    .movieImagesModel!.posters!.length,
+                                itemBuilder: (context, index) {
+                                  return CacheNetworkImageWidget(
+                                      imgUrl: Apis.imageBaseUrl +
+                                          movieListingProvider.movieImagesModel!
+                                              .posters![index].filePath
+                                              .toString(),
+                                      radius: 13);
+                                },
+                              ),
+                            )
                     ],
                   ),
                 ),

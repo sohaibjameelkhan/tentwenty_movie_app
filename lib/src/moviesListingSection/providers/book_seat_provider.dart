@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tentwenty_movie_app/Utils/image_constants.dart';
 
+
+import '../../../Utils/image_constants.dart';
 import '../models/custom_theaters_models.dart';
 
 class BookSeatProvider extends ChangeNotifier {

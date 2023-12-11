@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/models/custom_theaters_models.dart';
 
 import '../../../Utils/app_colors.dart';
 import '../../../Utils/app_theme.dart';
 import '../../../Utils/image_constants.dart';
+import '../models/custom_theaters_models.dart';
 
 class TheatreHallCardWidget extends StatelessWidget {
   final TheaterModel theaterModel;

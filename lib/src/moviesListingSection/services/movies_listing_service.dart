@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/models/movie_details_model.dart';
-import 'package:tentwenty_movie_app/src/moviesListingSection/models/movies_listing_model.dart';
+
 
 import '../../../Utils/api_constants.dart';
 import '../../../helpers/dio_helper.dart';
 import '../../commonWidgets/snak_bar_widget.dart';
+import '../models/movie_details_model.dart';
+import '../models/movie_images_model.dart';
+import '../models/movie_trailers_model.dart';
+import '../models/movies_listing_model.dart';
 
 class MoviesListingService {
   static DioServices dio = DioServices();
@@ -39,5 +42,37 @@ class MoviesListingService {
               .replaceAll("]", ""));
     }
     return MovieDetailsModel.fromJson(response.data);
+  }
+
+  ///get movie trailers
+
+  Future<MovieTrailersModel?> getMovieTrailers(String movieID) async {
+    Response? response = await dio.get("/$movieID/videos");
+    //var jsonResponse = jsonDecode(response!.body);
+    if (response.statusCode == 200) {
+    } else {
+      showErrorSnackBarMessage(
+          message: response.data["status"]
+              .toString()
+              .replaceAll("[", "")
+              .replaceAll("]", ""));
+    }
+    return MovieTrailersModel.fromJson(response.data);
+  }
+
+  ///get movie images
+
+  Future<MovieImagesModel?> getMovieImages(String movieID) async {
+    Response? response = await dio.get("/$movieID/images");
+    //var jsonResponse = jsonDecode(response!.body);
+    if (response.statusCode == 200) {
+    } else {
+      showErrorSnackBarMessage(
+          message: response.data["status"]
+              .toString()
+              .replaceAll("[", "")
+              .replaceAll("]", ""));
+    }
+    return MovieImagesModel.fromJson(response.data);
   }
 }

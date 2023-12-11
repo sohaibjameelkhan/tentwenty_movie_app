@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tentwenty_movie_app/Utils/app_theme.dart';
-import 'package:tentwenty_movie_app/Utils/image_constants.dart';
 
 import '../../Utils/app_colors.dart';
+import '../../Utils/app_theme.dart';
+import '../../Utils/image_constants.dart';
 
 class CommonButtonWidget extends StatelessWidget {
   final String text;
